@@ -32,3 +32,6 @@ Cluster restart upgrades require you to shut down all nodes, perform the upgrade
 
 Cluster restart upgrades work between minor versions (e.g. 6.5 to 6.8) and the next major version (for example, 6.x to 7.10.2). Cluster restart upgrades are faster to perform and require fewer intermediate upgrades, but require downtime.
 
+So we are going to stop one node, I will follow "rolling upgrade" method
+
+```# systemctl stop opensearch.service```

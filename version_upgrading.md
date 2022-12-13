@@ -58,22 +58,25 @@ If the opensearch service is up and running by tarball installation, you have to
 
 - In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
 
-path.data: /var/lib/opensearch
-path.logs: /var/log/opensearch
-plugins.security.disabled: true
+  path.data: /var/lib/opensearch
 
-Port your settings from old opensearch.yml to the new opensearch.yml. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
+  path.logs: /var/log/opensearch
+
+  plugins.security.disabled: true
+
+  Port your settings from old opensearch.yml to the new opensearch.yml. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
 
 - (Optional) If you’re actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a compatibility setting to opensearch.yml:
 
-compatibility.override_main_response_version: true
-(Optional) Add your certificates to your config directory, add them to opensearch.yml, and initialize the security plugin.
+  compatibility.override_main_response_version: true
 
-Start OpenSearch on the node (rolling) or all nodes (cluster restart).
+- (Optional) Add your certificates to your config directory, add them to opensearch.yml, and initialize the security plugin.
 
-For the tarball, run ./bin/opensearch -d.
+- Start OpenSearch on the node (rolling) or all nodes (cluster restart).
 
-Wait for the OpenSearch node to rejoin the cluster (rolling) or for the cluster to start (cluster restart). Check the _nodes summary to verify that all nodes are available and running the expected version:
+  For the tarball, run ./bin/opensearch -d.
+
+- Wait for the OpenSearch node to rejoin the cluster (rolling) or for the cluster to start (cluster restart). Check the _nodes summary to verify that all nodes are available and running the expected version:
 
 # Security plugin disabled
 curl -XGET 'localhost:9200/_nodes/_all?pretty=true'

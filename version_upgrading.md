@@ -50,6 +50,7 @@ If the opensearch service is up and running by tarball installation, you have to
 - Extract the OpenSearch tarball to a new directory
   
   **Note**: Do not overwrite the current Opensearch config, data, and logs directories.
+  
   ```tar zxvf opensearch-dashboards-1.3.6-linux-x64.tar.gz```
 
 - Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).

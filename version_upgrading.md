@@ -105,3 +105,9 @@ If the opensearch service is up and running by tarball installation, you have to
     }
   }
 ```
+
+- Reconfigure the systemd configuation file **"opensearch.service"** to the new path of the new opensearch version.
+
+- `# systemctl reload-daemon`
+
+- `# systemctl status opensearch.service`

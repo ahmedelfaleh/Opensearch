@@ -44,24 +44,26 @@ If the opensearch service is up and running by tarball installation, you have to
 
 #### 3. Upgrade the node (rolling) or all nodes (cluster restart)
 
-- Download the tarball file from this link
-  <[https://opensearch.org/downloads.html]>
+- Download the tarball file from this link, choose the version that you want to upgrade to.
+  <https://opensearch.org/downloads.html>
 
 - Extract the OpenSearch tarball to a new directory
+  
   **Note**: Do not overwrite the current Opensearch config, data, and logs directories.
+  ```tar zxvf opensearch-dashboards-1.3.6-linux-x64.tar.gz```
 
-(Optional) Copy or move your Elasticsearch OSS data and logs directories to new paths. For example, you might move /var/lib/elasticsearch to /var/lib/opensearch.
+- Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).
+  export OPENSEARCH_PATH_CONF=/usr/share/opensearch/config
 
-Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).
-
-In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
+- In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
 
 path.data: /var/lib/opensearch
 path.logs: /var/log/opensearch
 plugins.security.disabled: true
-Port your settings from elasticsearch.yml to opensearch.yml. Most settings use the same names. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
 
-(Optional) If you’re actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a compatibility setting to opensearch.yml:
+Port your settings from old opensearch.yml to the new opensearch.yml. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
+
+- (Optional) If you’re actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a compatibility setting to opensearch.yml:
 
 compatibility.override_main_response_version: true
 (Optional) Add your certificates to your config directory, add them to opensearch.yml, and initialize the security plugin.

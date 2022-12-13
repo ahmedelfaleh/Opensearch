@@ -12,7 +12,8 @@ I quoted from the "How it works" guide in the upgrade tool too, as it a good ref
 
 #### 1. Disable shard allocation to prevent Elasticsearch OSS from replicating shards as you shut down nodes
 
-```PUT _cluster/settings
+```
+PUT _cluster/settings
 {
   "persistent": {
     "cluster.routing.allocation.enable": "primaries"
@@ -36,13 +37,14 @@ Cluster restart upgrades work between minor versions (e.g. 6.5 to 6.8) and the n
 
 So we are going to stop one node, I will follow **"rolling upgrade"** method
 
-```# systemctl stop opensearch.service```
+`# systemctl stop opensearch.service`
 
 If the opensearch service is up and running by tarball installation, you have to search for the process and kill it
 
-```# ps aux | grep opensearch```
-
-```# kill -9 {PID}```
+```
+  # ps aux | grep opensearch
+  # kill -9 {PID}
+```
 
 #### 3. Upgrade the node (rolling) or all nodes (cluster restart)
 
@@ -53,7 +55,7 @@ If the opensearch service is up and running by tarball installation, you have to
   
   **Note**: Do not overwrite the current Opensearch config, data, and logs directories.
   
-  ```tar zxvf opensearch-dashboards-1.3.6-linux-x64.tar.gz```
+  `tar zxvf opensearch-dashboards-1.3.6-linux-x64.tar.gz`
 
 - Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).
   export OPENSEARCH_PATH_CONF=/usr/share/opensearch/config
@@ -73,31 +75,33 @@ If the opensearch service is up and running by tarball installation, you have to
   compatibility.override_main_response_version: true
 
 - (Optional) Add your certificates to your config directory, add them to opensearch.yml, and initialize the security plugin.
-  ```# cp /old/path/config/{CERT_NAME}.crt /new/path/config/```
+  `# cp /old/path/config/{CERT_NAME}.crt /new/path/config/`
 
   - Start OpenSearch on the node (rolling) or all nodes (cluster restart).
 
-    For the tarball, run ./bin/opensearch -d.
+    For the tarball, run `./bin/opensearch -d.`
 
   - Wait for the OpenSearch node to rejoin the cluster (rolling) or for the cluster to start (cluster restart). Check the _nodes summary to verify that all nodes are available and running the expected version:
 
-##### Security plugin disabled
+  ##### Security plugin disabled
   
-  curl -XGET 'localhost:9200/_nodes/_all?pretty=true'
+  `curl -XGET 'localhost:9200/_nodes/_all?pretty=true'`
 
-##### Security plugin enabled
+  ##### Security plugin enabled
 
-  curl -XGET -k -u 'admin:admin' 'https://localhost:9200/_nodes/_all?pretty=true'
+  `curl -XGET -k -u 'admin:admin' 'https://localhost:9200/_nodes/_all?pretty=true'`
 
   Specifically, check the nodes.<node-id>.version portion of the response. Also check _cat/indices?v for a green status on all indices.
 
-(Rolling) Repeat steps 2–5 until all nodes are using OpenSearch.
+- (Rolling) Repeat steps 2–5 until all nodes are using OpenSearch.
 
-After all nodes are using the new version, re-enable shard allocation:
+- After all nodes are using the new version, re-enable shard allocation:
 
-PUT _cluster/settings
-{
-  "persistent": {
-    "cluster.routing.allocation.enable": "all"
+```
+  PUT _cluster/settings
+  {
+    "persistent": {
+      "cluster.routing.allocation.enable": "all"
+    }
   }
-}
+```

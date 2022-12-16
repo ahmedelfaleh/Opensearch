@@ -63,8 +63,8 @@ If the opensearch service is up and running by tarball installation, you have to
 - In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
 
 ```
-  path.data: /var/lib/opensearch
-  path.logs: /var/log/opensearch
+  path.data: /usr/share/opensearch/data
+  path.logs: /usr/share/opensearch/logs
   plugins.security.disabled: true
 ```
   

@@ -59,7 +59,7 @@ If the opensearch service is up and running by tarball installation, you have to
 
 - Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).
   
-  `export OPENSEARCH_PATH_CONF=/usr/share/opensearch/config`
+  `export OPENSEARCH_PATH_CONF=/new/path/of/opensearch/conf-file_name`
 
 - In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
 

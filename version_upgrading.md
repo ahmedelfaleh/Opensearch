@@ -10,7 +10,7 @@ I quoted from the "How it works" guide in the upgrade tool too, as it a good ref
 
 <https://opensearch.org/docs/2.0/upgrade-to/upgrade-to/#how-it-works>
 
-#### 1. Disable shard allocation to prevent Elasticsearch OSS from replicating shards as you shut down nodes
+#### 1. Disable shard allocation to prevent Opensearch OSS from replicating shards as you shut down nodes
 
 ```
 PUT _cluster/settings
@@ -21,7 +21,7 @@ PUT _cluster/settings
 }
 ```
 
-#### 2. Stop Elasticsearch OSS on one node (rolling upgrade) or all nodes (cluster restart upgrade)
+#### 2. Stop Opensearch on one node (rolling upgrade) or all nodes (cluster restart upgrade)
 
 ##### Rolloing Upgrade
 

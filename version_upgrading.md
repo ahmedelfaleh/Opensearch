@@ -60,16 +60,7 @@ If the opensearch service is up and running by tarball installation, you have to
 - Set the OPENSEARCH_PATH_CONF environment variable to the directory that contains opensearch.yml (e.g. /etc/opensearch).
   
   `export OPENSEARCH_PATH_CONF=/new/path/of/opensearch/conf-file_name`
-
-- In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
-
-```
-  path.data: /usr/share/opensearch/data
-  path.logs: /usr/share/opensearch/logs
-  plugins.security.disabled: true
-```
-  
-  Port your settings from old opensearch.yml to the new opensearch.yml. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
+- Port your settings from old opensearch.yml to the new opensearch.yml. At a minimum, specify cluster.name, node.name, discovery.seed_hosts, and cluster.initial_cluster_manager_nodes.
 
 - (Optional) If you’re actively connecting to the cluster with legacy clients that check for a particular version number, such as Logstash OSS, add a compatibility setting to opensearch.yml:
 
@@ -86,6 +77,14 @@ If the opensearch service is up and running by tarball installation, you have to
     # cp -ar /usr/share/opensearch/config/*pem $OPENSEARCH_PATH_CONF/
   ```
 
+- In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:
+
+```
+  path.data: /usr/share/opensearch/data
+  path.logs: /usr/share/opensearch/logs
+  plugins.security.disabled: true
+```
+  
   - Start OpenSearch on the node (rolling) or all nodes (cluster restart).
 
     For the tarball, run `./bin/opensearch -d.`

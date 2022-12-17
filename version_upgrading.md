@@ -72,7 +72,7 @@ If the opensearch service is up and running by tarball installation, you have to
 - As per **Upgradting tool** further steps
 
   ```
-    # cp -ar /usr/share/opensearch/config/jvm-options* $OPENSEARCH_PATH_CONF/
+    # cp -ar /usr/share/opensearch/config/jvm.options* $OPENSEARCH_PATH_CONF/
     # cp -ar /usr/share/opensearch/config/opensearch.keystore $OPENSEARCH_PATH_CONF/
     # cp -ar /usr/share/opensearch/config/*pem $OPENSEARCH_PATH_CONF/
   ```

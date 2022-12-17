@@ -78,6 +78,14 @@ If the opensearch service is up and running by tarball installation, you have to
 - (Optional) Add your certificates to your config directory, add them to opensearch.yml, and initialize the security plugin.
   `# cp /old/path/config/{CERT_NAME}.crt /new/path/config/`
 
+- As per **Upgradting tool** further steps
+
+  ```
+    # cp -ar /usr/share/opensearch/config/jvm-options* $OPENSEARCH_PATH_CONF/
+    # cp -ar /usr/share/opensearch/config/opensearch.keystore $OPENSEARCH_PATH_CONF/
+    # cp -ar /usr/share/opensearch/config/*pem $OPENSEARCH_PATH_CONF/
+  ```
+
   - Start OpenSearch on the node (rolling) or all nodes (cluster restart).
 
     For the tarball, run `./bin/opensearch -d.`
@@ -90,9 +98,9 @@ If the opensearch service is up and running by tarball installation, you have to
 
   ##### Security plugin enabled
 
-  `curl -XGET -k -u 'admin:admin' 'https://localhost:9200/_nodes/_all?pretty=true'`
+  `curl -XGET -k -u 'username:password' 'https://localhost:9200/_nodes/_all?pretty=true'`
 
-  Specifically, check the nodes.<node-id>.version portion of the response. Also check _cat/indices?v for a green status on all indices.
+  Specifically, check the nodes.<node_name>.version portion of the response. Also check _cat/indices?v for a green status on all indices.
 
 - (Rolling) Repeat steps 2–5 until all nodes are using OpenSearch.
 

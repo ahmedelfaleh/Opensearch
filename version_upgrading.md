@@ -74,7 +74,7 @@ If the opensearch service is up and running by tarball installation, you have to
   ```
     # cp -ar /usr/share/opensearch/config/jvm.options* $OPENSEARCH_PATH_CONF/
     # cp -ar /usr/share/opensearch/config/opensearch.keystore $OPENSEARCH_PATH_CONF/
-    # cp -ar /usr/share/opensearch/config/*pem $OPENSEARCH_PATH_CONF/
+    # cp -ar /usr/share/opensearch/config/SSL $OPENSEARCH_PATH_CONF/
   ```
 
 - In opensearch.yml, set path.data and path.logs. You might also want to disable the security plugin for now. opensearch.yml might look something like this:

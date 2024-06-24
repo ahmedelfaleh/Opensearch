@@ -26,6 +26,5 @@
   
 - name: debug shard allocation status
   ansible.builtin.debug:
-    var: current.settings
-    #msg: "Shard allocation is already set to {{ current_settings.json.persistent.cluster.routing.allocation.enable }}"
-  #when: current_settings.json.persistent.cluster.routing.allocation.enable == "all"
+    msg: "Shard allocation is already set to {{ current_settings.json.persistent.cluster.routing.allocation.enable }}"
+  when: current_settings.json.persistent.cluster.routing.allocation.enable == "all"

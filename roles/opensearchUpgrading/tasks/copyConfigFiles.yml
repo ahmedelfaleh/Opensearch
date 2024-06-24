@@ -1,29 +1,29 @@
 ---
-- name: Copy jvm.options file
+- name: copy jvm.options file
   ansible.builtin.copy:
     src: "{{ CRNT_OS_CONF_PATH }}/jvm.options"
     dest: "{{ OPENSEARCH_CONF_PATH }}/jvm.options"
     remote_src: yes
 
-- name: Copy jvm.options.d directory
+- name: copy jvm.options.d directory
   ansible.builtin.copy:
     src: "{{ CRNT_OS_CONF_PATH }}/jvm.options.d/"
     dest: "{{ OPENSEARCH_CONF_PATH }}/jvm.options.d/"
     remote_src: yes
 
-- name: Copy opensearch.keystore file
+- name: copy opensearch.keystore file
   ansible.builtin.copy:
     src: "{{ CRNT_OS_CONF_PATH }}/opensearch.keystore"
     dest: "{{ OPENSEARCH_CONF_PATH }}/opensearch.keystore"
     remote_src: yes
 
-- name: Copy SSL directory
+- name: copy SSL directory
   ansible.builtin.copy:
     src: "{{ CRNT_OS_CONF_PATH }}/SSL/"
     dest: "{{ OPENSEARCH_CONF_PATH }}/SSL/"
     remote_src: yes
 
-- name: Copy opensearch.yml file
+- name: copy opensearch.yml file
   ansible.builtin.copy:
     src: "{{ CRNT_OS_CONF_PATH }}/opensearch.yml"
     dest: "{{ OPENSEARCH_CONF_PATH }}/opensearch.yml"

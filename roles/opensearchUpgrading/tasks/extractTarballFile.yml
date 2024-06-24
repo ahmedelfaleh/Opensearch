@@ -1,5 +1,5 @@
 ---
-  - name: Check if tarball is already extracted
+  - name: check if tarball is already extracted
     ansible.builtin.stat:
       path: /opt/opensearch-{{ NEW_OS_VERSION }}
     register: extracted_check

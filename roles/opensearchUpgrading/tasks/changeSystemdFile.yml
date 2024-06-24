@@ -1,0 +1,5 @@
+---
+- name: copy openSearch.service from template
+  ansible.builtin.template:
+    src: templates/opensearch.service.j2
+    dest: "{{ service_file_path.stdout }}"

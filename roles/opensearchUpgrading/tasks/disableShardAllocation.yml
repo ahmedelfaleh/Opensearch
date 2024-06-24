@@ -1,18 +1,28 @@
 ---
-  - name: disable shard allocation
-    ansible.builtin.uri:
-      url: https://localhost:9200/_cluster/settings
-      url_username: admin
-      url_password: "791346Ah!"
-      validate_certs: no
-      method: PUT
-      return_content: yes
-      body_format: json
-      body: '{ "persistent": { "cluster.routing.allocation.enable": "primaries" } }'
-    register: acknowledge
+- name: Check current shard allocation settings
+  ansible.builtin.uri:
+    url: https://{{ OS_URL }}:9200/_cluster/settings
+    url_username: "{{ OS_USERNAME }}"
+    url_password: "{{ OS_PASSWORD }}"
+    validate_certs: no
+    method: GET
+    return_content: yes
+  register: current_settings
 
-  - name: debug disabling shard allocation
-    ansible.builtin.debug:
-      var: acknowledge.json.persistent.cluster.routing.allocation.enable
+- name: Disable shard allocation if not already set to "primaries"
+  ansible.builtin.uri:
+    url: https://{{ OS_URL }}:9200/_cluster/settings
+    url_username: "{{ OS_USERNAME }}"
+    url_password: "{{ OS_PASSWORD }}"
+    validate_certs: no
+    method: PUT
+    return_content: yes
+    body_format: json
+    body: '{ "persistent": { "cluster.routing.allocation.enable": "primaries" } }'
+  when: current_settings.json.persistent.cluster.routing.allocation.enable != "primaries"
+  register: current_settings
 
-
+- name: Debug shard allocation status
+  ansible.builtin.debug:
+    msg: "Shard allocation is already set to {{ current_settings.json.persistent.cluster.routing.allocation.enable }}"
+  when: current_settings.json.persistent.cluster.routing.allocation.enable == "primaries"

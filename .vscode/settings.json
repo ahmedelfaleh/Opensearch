@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
         "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/ahmedelfaleh/ansible_/opensearch/roles/opensearchUpgrading/tasks/downloadTarball.yml"
-    }
+    },
+    "ansible.python.interpreterPath": "c:\\Users\\nb29200\\AppData\\Local\\Microsoft\\WindowsApps\\python3.11.exe"
 }

@@ -2,6 +2,8 @@
 
 - name: opensearch version upgrading
   hosts: group1
+  become: yes
+  become_user: root
   gather_facts: false
   roles:
     - opensearchUpgrading

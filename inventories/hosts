@@ -1,9 +1,8 @@
 [masters1]
-master1 ansible_host=10.10.10.3   ansible_user=ahmedelfaleh
+test.faleh.local ansible_host=test.faleh.local ansible_user=ahmedelfaleh ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [group1:children]
 masters1
-data1
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

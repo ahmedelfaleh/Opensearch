@@ -1,10 +1,16 @@
 ---
+  - name: Check if tarball is already extracted
+    ansible.builtin.stat:
+      path: /opt/opensearch-{{ NEW_OS_VERSION }}
+    register: extracted_check
+
   - name: extract tarball file
     become: true
     ansible.builtin.unarchive:
       remote_src: true
       src: "{{ TARBALL_FILE_LOCATION }}"
       dest: /opt
+    when: not extracted_check.stat.exists
   
   - name: find the new extracted directory
     ansible.builtin.find:
@@ -19,8 +25,8 @@
       var: DIRNAME['files'][0]['path']
 
   - ansible.builtin.set_fact:
-      OPENSEARCH_PATH_CONF: "{{ DIRNAME['files'][0]['path'] }}/config"
+      OPENSEARCH_CONF_PATH: "{{ DIRNAME['files'][0]['path'] }}/config"
   
   - name: debug config path
     ansible.builtin.debug:
-      var: OPENSEARCH_PATH_CONF
+      var: OPENSEARCH_CONF_PATH

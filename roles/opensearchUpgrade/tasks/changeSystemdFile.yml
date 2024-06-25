@@ -12,6 +12,3 @@
   ansible.builtin.template:
     src: templates/opensearch.service.j2
     dest: "{{ service_file_path.stdout }}"
-  notify:
-    - daemon reload
-    - start opensearch

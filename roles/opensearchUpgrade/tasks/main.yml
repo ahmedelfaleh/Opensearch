@@ -26,11 +26,11 @@
   - ansible.builtin.import_tasks: changeSystemdFile.yml
     tags: changeSystemdFile
 
-  #- ansible.builtin.import_tasks: daemonReload.yml
-  #  tags: daemonReload
+  - ansible.builtin.import_tasks: daemonReload.yml
+    tags: daemonReload
   
-  #- ansible.builtin.import_tasks: startOpensearchService.yml
-  #  tags: startOpensearchService
+  - ansible.builtin.import_tasks: startOpensearchService.yml
+    tags: startOpensearchService
 
   - ansible.builtin.import_tasks: enableShardAllocation.yml
     tags: enableShardAllocation

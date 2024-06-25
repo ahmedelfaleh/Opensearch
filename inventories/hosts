@@ -1,8 +1,23 @@
-[masters1]
-test.faleh.local ansible_host=test.faleh.local ansible_user=ahmedelfaleh ansible_ssh_private_key_file=~/.ssh/id_rsa
+[master_nodes01]
+master01 ansible_host=test.faleh.local ansible_user=ahmedelfaleh ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[master_nodes02]
+master02
+
+[master_nodes03]
+master03
+
+[data_nodes01]
+node01
+
+[data_nodes02]
+node04
+
+[data_nodes03]
+node07
 
 [group1:children]
-masters1
+master_nodes01
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

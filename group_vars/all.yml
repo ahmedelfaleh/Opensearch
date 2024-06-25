@@ -3,6 +3,6 @@ CRNT_OS_CONF_PATH: "/opt/opensearch-2.4.1/config" #The current opensearch config
 OLD_OS_VERSION: "2.4.1" #The current opensearch version
 NEW_OS_VERSION: "2.14.0" #Change to the version you want to upgrade to
 OS_USER: opensearch
-OS_URL: "{{ ansible_host }}" #Don't change it
+OS_URL: "{{ ansible_host }}" #Change to Kibana URL
 OS_USERNAME: "admin"
 OS_PASSWORD: "791346Ah!" #change to the correct admin password

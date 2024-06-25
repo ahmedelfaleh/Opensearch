@@ -1,5 +1,0 @@
----
-  - name: start opensearch
-    ansible.builtin.service:
-      name: opensearch
-      state: started

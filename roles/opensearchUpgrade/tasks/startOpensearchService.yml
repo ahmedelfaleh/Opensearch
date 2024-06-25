@@ -1,5 +1,0 @@
----
-- name: start opensearch service
-  ansible.builtin.systemd:
-    name: opensearch.service
-    state: restarted

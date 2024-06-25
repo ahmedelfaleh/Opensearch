@@ -1,0 +1,3 @@
+OS_URL: "{{ ansible_host }}" #Change to Kibana URL
+OS_USERNAME: "admin"
+OS_PASSWORD: "791346Ah!" #change to the correct admin password

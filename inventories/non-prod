@@ -16,8 +16,21 @@ node04
 [data_nodes03]
 node07
 
-[group1:children]
+[dashboard_nodes]
+dash01
+dash02
+
+[group01:children]
 master_nodes01
+data_nodes01
+
+[group02:children]
+master_nodes02
+data_nodes02
+
+[group03:children]
+master_nodes03
+data_nodes03
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

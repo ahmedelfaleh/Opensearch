@@ -1,8 +1,8 @@
 ---
 - name: opensearch version upgrading
-  hosts: master01
+  hosts: dashboard
   become: yes
   become_user: root
   gather_facts: false
   roles:
-    - opensearchUpgrade
+    - dashboardUpgrade

@@ -1,6 +1,6 @@
 ---
-- name: opensearch version upgrading
-  hosts: dashboard
+- name: dashboard version upgrading
+  hosts: dashboard_nodes
   become: yes
   become_user: root
   gather_facts: false

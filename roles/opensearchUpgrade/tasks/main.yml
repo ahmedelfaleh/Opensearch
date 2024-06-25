@@ -23,9 +23,6 @@
   - ansible.builtin.import_tasks: correctPaths.yml
     tags: correctPaths
 
-  - ansible.builtin.import_tasks: serviceFilePath.yml
-    tags: serviceFilePath
-
   - ansible.builtin.import_tasks: changeSystemdFile.yml
     tags: changeSystemdFile
 

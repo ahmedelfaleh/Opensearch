@@ -6,5 +6,3 @@
   gather_facts: false
   roles:
     - opensearchUpgrade
-  handlers:
-    - include:  roles/opensearchUpgrade/handlers/main.yml

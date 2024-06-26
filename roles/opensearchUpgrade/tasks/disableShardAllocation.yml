@@ -19,10 +19,13 @@
     return_content: yes
     body_format: json
     body: '{ "persistent": { "cluster.routing.allocation.enable": "primaries" } }'
-  when: current_settings.json.persistent.cluster.routing.allocation.enable != "primaries"
-  register: current_settings
+  when: current_settings.json.persistent.cluster.routing.allocation.enable is not defined or current_settings.json.persistent.cluster.routing.allocation.enable != "primaries"
+  register: new_settings
 
-- name: shard allocation status
-  ansible.builtin.debug:
+- ansible.builtin.debug:
     msg: "Shard allocation is already set to {{ current_settings.json.persistent.cluster.routing.allocation.enable }}"
-  when: current_settings.json.persistent.cluster.routing.allocation.enable == "primaries"
+  when: new_settings.json is not defined
+
+- ansible.builtin.debug:
+    msg: "Shard allocation is already set to {{ new_settings.json.persistent.cluster.routing.allocation.enable }}"
+  when: new_settings.json is defined

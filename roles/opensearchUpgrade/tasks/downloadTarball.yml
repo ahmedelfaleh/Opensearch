@@ -18,7 +18,7 @@
   - name: download tarball file
     become: true
     ansible.builtin.get_url:
-      url: https://artifacts.opensearch.org/releases/bundle/opensearch/{{ OS_TAR_FILENAME }}
+      url: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ NEW_OS_VERSION }}/opensearch-{{ NEW_OS_VERSION }}-linux-x64.tar.gz"
       dest: /opt/{{ OS_TAR_FILENAME }}
       force: false
     register: FILEPATH

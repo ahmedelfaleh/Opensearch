@@ -20,9 +20,6 @@
   - ansible.builtin.import_tasks: changePermissionAndOwnership.yml
     tags: changePermissionAndOwnership
 
-  - ansible.builtin.import_tasks: correctPaths.yml
-    tags: correctPaths
-
   - ansible.builtin.import_tasks: changeSystemdFile.yml
     tags: changeSystemdFile
 

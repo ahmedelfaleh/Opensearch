@@ -1,7 +1,7 @@
 ---
   - name: check if tarball is already extracted
     ansible.builtin.stat:
-      path: /opt/{{ OS_TAR_FILENAME | regex_replace('\.tar\.gz', '') }}
+      path: /opt/opensearch-{{ NEW_OS_VERSION }}
     register: extracted_check
 
   - ansible.builtin.debug:

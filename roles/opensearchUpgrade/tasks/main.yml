@@ -1,0 +1,39 @@
+---
+  - ansible.builtin.import_tasks: disableShardAllocation.yml
+    tags: disableShardAllocation
+
+  - ansible.builtin.import_tasks: stopOpensearchService.yml
+    tags: stopOpensearchService
+
+  - ansible.builtin.import_tasks: downloadTarball.yml
+    tags: downloadTarball
+
+  - ansible.builtin.import_tasks: extractTarballFile.yml
+    tags: extractTarballFile      
+
+  - ansible.builtin.import_tasks: copyConfigFiles.yml
+    tags: copyConfigFiles
+
+  - ansible.builtin.import_tasks: addCompatibilitySettings.yml
+    tags: addCompatibilitySettings
+
+  - ansible.builtin.import_tasks: changePermissionAndOwnership.yml
+    tags: changePermissionAndOwnership
+
+  - ansible.builtin.import_tasks: correctPaths.yml
+    tags: correctPaths
+
+  - ansible.builtin.import_tasks: changeSystemdFile.yml
+    tags: changeSystemdFile
+
+  - ansible.builtin.import_tasks: daemonReload.yml
+    tags: daemonReload
+  
+  - ansible.builtin.import_tasks: startOpensearchService.yml
+    tags: startOpensearchService
+
+  - ansible.builtin.import_tasks: enableShardAllocation.yml
+    tags: enableShardAllocation
+
+  - ansible.builtin.import_tasks: nodeJoinedCluster.yml
+    tags: nodeJoinedCluster

@@ -1,0 +1,8 @@
+---
+- name: change permission and ownership
+  ansible.builtin.file:
+    path: /opt/opensearch-{{ NEW_OS_VERSION }}
+    state: directory
+    recurse: yes
+    owner: "{{ OS_USER }}"
+    group: "{{ OS_USER }}"

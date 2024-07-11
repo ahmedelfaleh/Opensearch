@@ -1,0 +1,30 @@
+- name: check current shard allocation settings
+  ansible.builtin.uri:
+    url: https://{{ OS_URL }}:{{ OS_PORT }}/_cluster/settings
+    url_username: "{{ OS_USERNAME }}"
+    url_password: "{{ OS_PASSWORD }}"
+    validate_certs: no
+    method: GET
+    return_content: yes
+  register: current_settings
+  until: current_settings.status == 200
+  retries: 10
+  delay: 10
+
+- name: enable shard allocation if not already set to "all"
+  ansible.builtin.uri:
+    url: https://{{ OS_URL }}:{{ OS_PORT }}/_cluster/settings
+    url_username: "{{ OS_USERNAME }}"
+    url_password: "{{ OS_PASSWORD }}"
+    validate_certs: no
+    method: PUT
+    return_content: yes
+    body_format: json
+    body: '{ "persistent": { "cluster.routing.allocation.enable": "all" } }'
+  when: current_settings.json.persistent.cluster.routing.allocation.enable != "all"
+  register: current_settings
+  
+- name: debug shard allocation status
+  ansible.builtin.debug:
+    msg: "Shard allocation is already set to {{ current_settings.json.persistent.cluster.routing.allocation.enable }}"
+  when: current_settings.json is defined and current_settings.json.persistent.cluster.routing.allocation.enable == "all"

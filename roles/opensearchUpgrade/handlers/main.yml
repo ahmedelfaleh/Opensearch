@@ -1,0 +1,18 @@
+---
+- name: daemon reload
+  become: yes
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: start opensearch
+  ansible.builtin.service:
+    name: opensearch
+    state: started
+
+- name: stop opensearch
+  ansible.builtin.service:
+    name: opensearch
+    state: stopped
+
+- name: End Playbook
+  ansible.builtin.meta: end_play

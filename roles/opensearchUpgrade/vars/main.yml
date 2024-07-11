@@ -1,0 +1,4 @@
+OS_URL: "test.faleh.local" #Change to master01 hostname
+OS_PORT: "9200"
+OS_USERNAME: "admin"
+OS_PASSWORD: '791346Ah!' #change to the correct admin password

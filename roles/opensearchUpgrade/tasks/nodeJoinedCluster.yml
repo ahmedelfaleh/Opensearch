@@ -1,0 +1,23 @@
+---
+- name: Get cluster nodes info
+  uri:
+    url: "https://{{ OS_URL }}:{{ OS_PORT }}/_cat/nodes"
+    method: GET
+    url_username: "{{ OS_USERNAME }}"
+    url_password: "{{ OS_PASSWORD }}"
+    validate_certs: no
+    return_content: yes
+  register: cluster_nodes
+  until: cluster_nodes.status == 200
+  retries: 10
+  delay: 10
+
+- name: check if '{{ ansible_hosts }}' is in the cluster
+  debug:
+    msg: "{{ OS_URL }} is present in the OpenSearch cluster."
+  when: "'{{ OS_URL }}' in cluster_nodes.content"
+
+- name: fail playbook if 'test.faleh.local' not in the cluster
+  fail:
+    msg: "{{ OS_URL }} has not joined the OpenSearch cluster."
+  when: "'{{ OS_URL }}' not in cluster_nodes.content"

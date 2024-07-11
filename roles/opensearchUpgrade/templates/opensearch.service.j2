@@ -1,0 +1,29 @@
+[Unit]
+Description=OpenSearch
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+RuntimeDirectory=data
+
+WorkingDirectory=/opt/opensearch-{{ NEW_OS_VERSION }}
+ExecStart=/opt/opensearch-{{ NEW_OS_VERSION }}/bin/opensearch -d
+
+User={{ OS_USER }}
+Group={{ OS_USER }}
+StandardOutput=journal
+StandardError=inherit
+LimitNOFILE=65535
+LimitNPROC=4096
+LimitAS=infinity
+LimitFSIZE=infinity
+TimeoutStopSec=0
+KillSignal=SIGTERM
+KillMode=process
+SendSIGKILL=no
+SuccessExitStatus=143
+TimeoutStartSec=75
+
+[Install]
+WantedBy=multi-user.target

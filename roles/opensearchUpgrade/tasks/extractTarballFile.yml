@@ -1,0 +1,37 @@
+---
+  - name: check if tarball is already extracted
+    ansible.builtin.stat:
+      path: /opt/{{ OS_TAR_FILENAME | regex_replace('\.tar\.gz', '') }}
+    register: extracted_check
+
+  - ansible.builtin.debug:
+      var: extracted_check
+
+  - name: extract tarball file
+    ansible.builtin.unarchive:
+      remote_src: true
+      src: "{{ TARBALL_FILE_LOCATION }}"
+      dest: /opt
+    when: not extracted_check.stat.exists
+  
+  - name: find the new extracted directory
+    ansible.builtin.find:
+      paths: /opt
+      file_type: directory
+      patterns:
+        - "*{{ NEW_OS_VERSION }}*"
+    register: DIRNAME
+  
+  - ansible.builtin.debug:
+      var: DIRNAME
+
+  - name: debug new os path
+    ansible.builtin.debug:
+      var: DIRNAME['files'][0]['path']
+
+  - ansible.builtin.set_fact:
+      OPENSEARCH_CONF_PATH: "{{ DIRNAME['files'][0]['path'] }}/config"
+  
+  - name: debug config path
+    ansible.builtin.debug:
+      var: OPENSEARCH_CONF_PATH

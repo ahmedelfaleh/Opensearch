@@ -1,0 +1,8 @@
+---
+- name: ensure the version compatibility line is presented in opensearch.yml
+  ansible.builtin.lineinfile:
+    path: "{{ OPENSEARCH_CONF_PATH }}/opensearch.yml"
+    line: 'compatibility.override_main_response_version: true'
+    insertafter: EOF
+    create: yes
+    state: present

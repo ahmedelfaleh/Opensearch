@@ -1,0 +1,14 @@
+---
+- name: Get the location of the opensearch.service file
+  ansible.builtin.shell: |
+    systemctl show -p FragmentPath opensearch.service | cut -d'=' -f2
+  register: service_file_path
+    
+- name: Debug service file path
+  ansible.builtin.debug:
+    msg: "The OpenSearch service file is located at: {{ service_file_path.stdout }}"
+
+- name: copy openSearch.service from template
+  ansible.builtin.template:
+    src: templates/opensearch.service.j2
+    dest: "{{ service_file_path.stdout }}"

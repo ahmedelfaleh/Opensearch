@@ -1,0 +1,28 @@
+---
+  - name: perform a HEAD request to the URL
+    ansible.builtin.uri:
+        url: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ NEW_OS_VERSION }}/opensearch-{{ NEW_OS_VERSION }}-linux-x64.tar.gz"
+        method: GET
+        return_content: no
+    register: response
+
+  - name: extract filename from URL header
+    ansible.builtin.set_fact:
+      OS_TAR_FILENAME: "{{ response.url | basename }}"
+
+  - name: check if file exists
+    ansible.builtin.stat:
+      path: /opt/{{ OS_TAR_FILENAME }}
+    register: FILESTAT
+    
+  - name: download tarball file
+    become: true
+    ansible.builtin.get_url:
+      url: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ NEW_OS_VERSION }}/opensearch-{{ NEW_OS_VERSION }}-linux-x64.tar.gz"
+      dest: /opt/{{ OS_TAR_FILENAME }}
+      force: false
+    register: FILEPATH
+#    when: not FILESTAT.stat.exists
+
+  - ansible.builtin.set_fact:
+      TARBALL_FILE_LOCATION: "{{ (FILEPATH.dest | default('')) | ternary(FILEPATH.dest, FILESTAT.stat.path) }}"

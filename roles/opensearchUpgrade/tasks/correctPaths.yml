@@ -1,7 +1,0 @@
----
-- name: correct the SSL path name in opensearch.yml
-  ansible.builtin.replace:
-    path: "{{ OPENSEARCH_CONF_PATH }}/opensearch.yml"
-    regexp: '/opt/opensearch-2\.4\.1([^/]*?/config/SSL/)'
-    replace: '/opt/opensearch-{{ NEW_OS_VERSION }}\1'
-        

@@ -1,0 +1,6 @@
+---
+- name: replace openSearch version in opensearch.yml
+  replace:
+    path: "{{ OPENSEARCH_CONF_PATH }}/opensearch.yml"
+    regexp: "{{ OLD_OS_VERSION | regex_escape }}"
+    replace: "{{ NEW_OS_VERSION  }}"

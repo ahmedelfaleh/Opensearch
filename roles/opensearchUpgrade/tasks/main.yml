@@ -17,6 +17,9 @@
   - ansible.builtin.import_tasks: addCompatibilitySettings.yml
     tags: addCompatibilitySettings
 
+  - ansible.builtin.import_tasks: changeOpensearchVersion.yml
+    tags: changeOpensearchVersion
+
   - ansible.builtin.import_tasks: changePermissionAndOwnership.yml
     tags: changePermissionAndOwnership
 
